@@ -78,7 +78,7 @@ exports.findOneMessage = (req, res, next) => {
 exports.findAllMessagesForOne = (req, res, next) => {
     let list = ""
     Message.findAll({ 
-        where: { UserId: parseInt(req.params.id) },
+        where: { UserId: req.params.id },
     })
     .then((result) => { 
         list = result;
