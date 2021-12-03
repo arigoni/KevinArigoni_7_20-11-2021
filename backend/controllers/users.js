@@ -38,6 +38,7 @@ exports.findAllUsers = (req, res, next) => {
         where: {id: { [Op.gt]: 0 }} 
     })    
     .then( (found) => {
+        console.log('found',found)
         res.status(200).json({ found }) 
     })
     .catch((error) => { 

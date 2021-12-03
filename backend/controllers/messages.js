@@ -78,11 +78,11 @@ exports.findOneMessage = (req, res, next) => {
 exports.findAllMessagesForOne = (req, res, next) => {
     let list = ""
     Message.findAll({ 
-        where: { UserId: req.params.id },
+        where: { UserId: parseInt(req.params.id) },
     })
-    .then((res) => { 
-        list = res;
-        res.status(200).json( { list } )
+    .then((result) => { 
+        list = result;
+        res.status(200).json({ list }) 
     })
     .catch((error) => { res.status(404).json({ error })})
 };

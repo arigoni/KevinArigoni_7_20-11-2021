@@ -9,7 +9,7 @@ const messageCtrl = require("../controllers/messages");
 const multer = require("../middleware/multer-config");
 
 // Routes
-router.post("/", auth,multer, messageCtrl.createMessage);
+router.post("/", auth, multer, messageCtrl.createMessage);
 router.get("/all/:id", messageCtrl.findAllMessagesForOne);
 router.get("/:id", messageCtrl.findOneMessage);
 router.get("/", messageCtrl.findAllMessages);
