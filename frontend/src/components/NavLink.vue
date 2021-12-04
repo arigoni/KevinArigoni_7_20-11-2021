@@ -9,7 +9,7 @@
 	<a href="/">Accueil</a> 
 </template>
 
-<style>
+<style lang="scss">
 	a {
 		text-decoration: none;
 	}

@@ -13,7 +13,7 @@ exports.signup = (req, res, next) => {
     return res.status(400).json({message: "one ore more paramaters empty"})
   }
   const nameRegex = /(.*[a-z]){3,30}/;
-  const mailRegex = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
+  const mailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
   const pwdRegex  = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/  
 
   if (nameRegex.test(req.body.userName) && mailRegex.test(req.body.email) && pwdRegex.test(req.body.password)) {
