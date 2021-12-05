@@ -7,18 +7,18 @@ L'objectif est de créer un réseau social d'entreprise pour "Groupomania".
 - Créer un dossier vide et cloner ce repository à l'intérieur: https://github.com/arigoni/KevinArigoni_7_20-11-2021
 - Vous verrez deux dossiers distincts: frontend et backend.
 
-### FRONTEND
+## FRONTEND
 - Ouvrez un terminal (assurez vous de bien être dans le dossier frontend) et faites: "npm install",
 - Puis une fois l'installation terminée: "npm run serve", à ce moment là un message s'affichera "App running at:" pour accéder au site.
 
-### BACKEND
+## BACKEND
 - Cette partie se décompose en deux rubriques: MySQL et Serveur.
-# MySQL
+### MySQL
 - Dans les settings de votre ordinateur, assurez vous qu'une instance MySQL soit bien active.
 - Connectez-vous à mysql.
 - Importez le fichier "initialisationBdd.sql" qui se trouve à la racine du projet.
 -> Ceci va créer une base de données nommée "groupomania"
-# Serveur
+### Serveur
 - Créez un fichier ".env" dans le dossier backend et y assignez des valeurs aux 6 variables suivantes:
 DB_HOST = "Votre nom d’hôte MySQL définit l’endroit où votre base de données MySQL est hébergée, par exemple en local: localhost"
 DB_PORT = "Le port MySQL par défaut est 3306"
@@ -29,7 +29,7 @@ TKN_SECRET = "variable de votre choix"
 - Ouvrir un second terminal (assurez vous de bien être dans le dossier backend) et faites: "npm install",
 - Puis une fois l'installation terminée: "node server"
 
-### Dans le navigateur
+## Dans le navigateur
 - Ouvrez votre navigateur à l'adresse: http://localhost:8080/
 - Vous voyez l'écran de connexion du projet.
 
