@@ -56,15 +56,15 @@ export default {
 </script>
 
 <template>
-<div class="container">    
+<main class="container">    
     <div class="col-12">
         <div class="col-12">
             <router-link v-if="isAdmin" to='/Admin'><p class="my-2 btn btn-block btn-danger font-weight-bold">Administration du site</p></router-link>
             <Home></Home>
         </div>
-        <div id="filPrincipal" class="row">
-            <div class="col-12 col-md-4">
-                <div class="card bg-light my-3 class=center-block" style="float:none;">
+        <section id="filPrincipal" class="row">
+            <sub class="col-12 col-md-4">
+                <article class="card bg-light my-3 class=center-block" style="float:none;">
                     <div class="card-header">
                         <div class="row justify-content-around">
                             <p class="m-1"> Bonjour {{ nameCurrentUser }} ! </p>
@@ -82,9 +82,9 @@ export default {
                     <div class="card-body mx-auto">
                         <button class="btn btn-dark rounded" style="cursor:default">Pour modérer les commentaires, veuillez vous rendre sur la page des commentaires en cliquant sur le logo "oeil".</button>
                     </div>
-                </div> 
-            </div>   
-            <div class="col col-md-8">
+                </article> 
+            </sub>   
+            <sub class="col col-md-8">
                 <h1 class="text-white text-center m-5 ">
                     LINKS TO ALL THE MESSAGES AND THEIR COMMENTS
                 </h1>
@@ -104,10 +104,10 @@ export default {
                         <span class="spanBadge"> <button class="rounded" @click="seeOnePost( i.id )"> <img src="../assets/eye.svg" alt="logo eye" style="width:25px"> </button> </span> 
                     </div>
                 </div>
-            </div>
-        </div>
+            <sub>
+        </section>
     </div>
-</div>
+</main>
 </template>
 
 <style lang="scss">

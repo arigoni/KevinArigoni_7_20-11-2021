@@ -62,14 +62,14 @@ export default {
 </script>
 
 <template>
-<div class="container">    
+<main class="container">    
     <div class="row justify-content-center">
         <div class="col-10">
             <div class="col-12">
                 <p class="my-2 btn btn-block btn-info font-weight-bold" style="cursor:default">Vous consultez vote compte</p>
                 <Home></Home>
             </div>
-            <div id="filPrincipal" class="row">
+            <section id="filPrincipal" class="row">
                 <div class="col-12">
                     <div class="card bg-light my-3 class=center-block" style="float:none;">
                         <div class="card-header">
@@ -91,10 +91,10 @@ export default {
                         </div>
                     </div> 
                 </div>  
-            </div>
+            </section>
         </div>
     </div>
-</div>
+</main>
 </template>
 
 <style lang="scss">
