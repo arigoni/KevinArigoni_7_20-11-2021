@@ -1,25 +1,72 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import Home from '../views/Home.vue'
 
 const routes = [
   {
-    path: '/',
-    name: 'Home',
-    component: Home
+    path: "/",
+    name: "Connexion",
+    component: () => import("../views/Connexion"),
   },
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    path: "/Admin",
+    name: "Admin",
+    component: () => import("../views/Admin"),
+  },
+  {
+    path: "/Compte",
+    name: "Compte",
+    component: () => import("../views/Compte"),
+  },
+  {
+    path: "/Comment",
+    name: "Comment",
+    component: () => import("../views/Comment"),
+  },
+  {
+    path: "/CommentsList",
+    name: "CommentsList",
+    component: () => import("../views/CommentsList"),
+  },
+  {
+    path: "/create",
+    name: "Create",
+    component: () => import("../views/Create")
+  },
+  {
+    path: "/CreateComment",
+    name: "CreateComment",
+    component: () => import("../views/CreateComment"),
+  },
+  {
+    path: "/inscription",
+    name: "Inscription",
+    component: () => import("../views/Inscription")
+  },
+  {
+    path: "/stream",
+    name: "Stream",
+    component: () => import("../views/Stream")
+  },
+  {
+    path: "/UsersList",
+    name: "UsersList",
+    component: () => import("../views/UsersList")
   }
 ]
 
 const router = createRouter({
   history: createWebHashHistory(),
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  const publicPages = ["/", "/inscription"]
+  const authRequired = !publicPages.includes(to.path)
+  const loggedIn = localStorage.getItem("userId")
+  const loggedToken = localStorage.getItem("token")
+  if (authRequired && !loggedIn && !loggedToken) {
+    return next("/")
+  }
+  next()
 })
 
 export default router

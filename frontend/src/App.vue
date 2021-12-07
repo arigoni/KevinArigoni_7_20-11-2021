@@ -1,3 +1,4 @@
+<!-- fichier central de l'application Vue -->
 <script>
 import NavLink from "./components/NavLink";
 

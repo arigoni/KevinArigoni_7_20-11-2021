@@ -1,4 +1,4 @@
-<!-- Composant de la partie header avec le logo et le contact -->
+<!-- Composant représentant la bannière avec le logo et le contact -->
 <script>
 export default {
 	name: 'NavLink'

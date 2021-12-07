@@ -32,6 +32,7 @@ L'objectif est de créer un réseau social d'entreprise pour "Groupomania".
 ## Dans le navigateur
 - Ouvrez votre navigateur à l'adresse: http://localhost:8080/
 - Vous voyez l'écran de connexion du projet.
+- Pour avoir le privilège d'Adminstrateur, revenez dans voter terminal connecté à MySQL, et importez le fichier setAdmin.sql. Cela attribuera au premier utilisateur créé (User id=1) les privilèges d'administration (isAdmin=1).
 
 ## Contact
 Vous pouvez me contacter sur le [workplace d'openclassrooms](https://openclassrooms.workplace.com/profile.php?id=100070045058297) 
