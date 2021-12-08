@@ -3,6 +3,7 @@ import Home from "../components/Home";
 import axios from "axios";
 import router from "../router";
 import "../main.css";
+
 export default {
     name: "Compte",
     components: {
@@ -42,9 +43,9 @@ export default {
                 .then((res)=> {
                     console.log(res);
                     alert('Cliquez sur ok et l\'utilisateur sera supprimé');
+                    router.replace("http://localhost:8080/api/")
                 })
                 .catch((error) => { 
-                    router.replace("http://localhost:8080/api/")
                     console.log(error)
                 })
             } else {
@@ -65,12 +66,14 @@ export default {
 <main class="container">    
     <div class="row justify-content-center">
         <div class="col-10">
+            <!-- Titre -->
             <div class="col-12">
-                <p class="my-2 btn btn-block btn-info font-weight-bold" style="cursor:default">Vous consultez vote compte</p>
+                <h1 class="my-2 btn btn-block btn-info font-weight-bold" style="cursor:default">Vous consultez vote compte</h1>
                 <Home></Home>
             </div>
             <section id="filPrincipal" class="row">
                 <div class="col-12">
+                    <!-- Bloc utilisateur -->
                     <div class="card bg-light my-3 class=center-block" style="float:none;">
                         <div class="card-header">
                             <div class="row justify-content-around">

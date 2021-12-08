@@ -4,10 +4,11 @@ import Home from "../components/Home";
 import axios from "axios";
 import router from "../router";
 import "../main.css";
+
 export default {
     name: "Admin",
     components: {
-      Home
+        Home
     },
     data() {
         return {
@@ -51,18 +52,19 @@ export default {
 <template>
 <div class="container">    
     <main class="col-12">   
-        <!-- section header incluant le titre --> 
-        <div class="col-12">
+        <!-- Titre --> 
+        <section class="col-12">
             <h1 class="my-2 btn btn-block btn-danger font-weight-bold" style="cursor:default">Administration du site</h1>
             <Home></Home>
-        </div>
+        </section>
         <section id="filPrincipal" class="row">
-            <div class="col-12 col-md-4"><!-- Bloc utilisateur -->        
+            <div class="col-12 col-md-4">
+                <!-- Article utilisateur -->
                 <article class="card bg-light my-3 class=center-block" style="float:none;">
                     <div class="card-header">
                         <div class="row justify-content-around">
-                            <p class="m-1"> Bonjour {{ nameCurrentUser }} ! </p>
-                            <button @click="localClear"><img src="../assets/signout.svg" alt="Sign out" style="width:35px"/></button>
+                            <div class="m-1"> Bonjour {{ nameCurrentUser }} ! </div>
+                            <button @click="localClear"> <img src="../assets/signout.svg" alt="sign-out" style="width:35px"/> </button>
                         </div>
                     </div>
                     <div class="card-body text-center">
@@ -71,8 +73,8 @@ export default {
                         </div>
                         <div>
                             <div v-if="isAdmin">
-                                <router-link to='/Admin'><button v-if="isAdmin" type="button" class=" btn btn-danger mx-auto rounded p-2">VOUS ÊTES L'ADMINISTRATEUR DU SITE</button></router-link> 
-                                <router-link to='/Admin'><button type="button" class=" btn btn-danger mx-auto m-3 rounded p-2 buttonsPanel"><button class="rounded p-1 m-1"><img src="../assets/trash.svg" alt="Trash" style="width:25px"> ACTIVÉE</button></button></router-link> 
+                                <router-link to='/Admin'><button v-if="isAdmin" type="button"  class=" btn btn-danger mx-auto rounded p-2">VOUS ÊTES L'ADMINISTRATEUR DU SITE</button></router-link> 
+                                <router-link to='/Admin'><button  type="button"   class=" btn btn-danger mx-auto m-3 rounded p-2 buttonsPanel"><button class=" rounded p-1 m-1 "><img src="../assets/trash.svg" alt="trash" style="width:25px"> ACTIVÉE</button></button></router-link> 
                             </div>
                         </div>
                     </div>
@@ -81,7 +83,8 @@ export default {
                     </div>
                 </article> 
             </div>   
-            <article class="col col-md-8 mt-5"><!-- Bloc choix -->
+            <!-- Article "Choix" -->
+            <article class="col col-md-8 mt-5">
                 <h2 class="text-white text-center m-5 ">FAITES VOTRE CHOIX</h2>
                 <div class="row justify-content-around">
                     <button @click="toCommentsList()" class="btn btn-warning rounded shadow font-weight-bold p-5 m-2">MESSAGES/COMMENTS</button>

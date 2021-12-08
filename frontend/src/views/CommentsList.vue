@@ -3,6 +3,7 @@ import Home from "../components/Home";
 import axios from "axios";
 import router from "../router";
 import "../main.css";
+
 export default {
     name: "CommentsList",
     components: {
@@ -58,12 +59,14 @@ export default {
 <template>
 <main class="container">    
     <div class="col-12">
+        <!-- Titre -->
         <div class="col-12">
-            <router-link v-if="isAdmin" to='/Admin'><p class="my-2 btn btn-block btn-danger font-weight-bold">Administration du site</p></router-link>
+            <router-link v-if="isAdmin" to='/Admin'><h1 class="my-2 btn btn-block btn-danger font-weight-bold">Administration du site</h1></router-link>
             <Home></Home>
         </div>
         <section id="filPrincipal" class="row">
             <sub class="col-12 col-md-4">
+                <!-- Article utilisateur -->
                 <article class="card bg-light my-3 class=center-block" style="float:none;">
                     <div class="card-header">
                         <div class="row justify-content-around">
@@ -84,16 +87,17 @@ export default {
                     </div>
                 </article> 
             </sub>   
+            <!-- Bloc liste message -->
             <sub class="col col-md-8">
-                <h1 class="text-white text-center m-5 ">
-                    LINKS TO ALL THE MESSAGES AND THEIR COMMENTS
-                </h1>
+                <h2 class="text-white text-center m-5 ">
+                    Liens vers tous les messages et leurs commentaires.
+                </h2>
                 <div class="badge btn-primary p-3 badgeList">
-                    <span class="spanBadge">DATE</span>  
-                    <span class="spanBadge">AUTEUR</span>
-                    <span class="spanBadge">MESSAGE</span> 
-                    <span class="spanBadge">REF</span> 
-                    <span class="spanBadge">VOIR</span> 
+                        <span class="spanBadge">DATE</span>  
+                        <span class="spanBadge">AUTEUR</span>
+                        <span class="spanBadge">MESSAGE</span> 
+                        <span class="spanBadge">REF</span> 
+                        <span class="spanBadge">VOIR</span> 
                 </div>
                 <div v-for="i in messages" :key="i">   
                     <div class="badge btn-primary p-3 badgeList">
@@ -104,7 +108,7 @@ export default {
                         <span class="spanBadge"> <button class="rounded" @click="seeOnePost( i.id )"> <img src="../assets/eye.svg" alt="logo eye" style="width:25px"> </button> </span> 
                     </div>
                 </div>
-            <sub>
+            </sub>
         </section>
     </div>
 </main>

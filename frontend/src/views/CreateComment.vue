@@ -2,6 +2,7 @@
 import axios from "axios";
 import router from "../router";
 import "../main.css";
+
 export default {
     name: "CreateComment",
      data() {
@@ -32,7 +33,7 @@ export default {
                 .then(()=> {
                     this.UserId = ""
                     this.newMessage = ""
-                    
+            
                     alert('Commentaire Posté!')
                     router.push({path : 'Comment'})
                     
@@ -47,13 +48,14 @@ export default {
 </script>
 
 <template>
-<div class="container">
-    <div class="row card bg-light m-5 p-3">
+<main class="container">
+    <!-- Section pour la creation de commentaire -->
+    <section class="row card bg-light m-5 p-3">
         <form enctype="multipart/form-data">
             <div class="header">
-                <p  class="btn btn-dark" style="cursor:default">
+                <h1  class="btn btn-dark" style="cursor:default">
                     {{ callName() }} vous commentez la publication numéro <span class="badge font-weight-bold badge-light"> {{ callNumber() }}</span>
-                </p>
+                </h1>
             </div>
             <div class="row">
                 <div class="col-12 justify-content-center form-group">
@@ -69,8 +71,8 @@ export default {
                 <p> Vous devez renseigner la case " Saisissez votre commentaire ici en respectant les instructions (1500 caractères max) "</p>
             </div>  
         </form>
-    </div>
-</div>
+    </section>
+</main>
 </template>
 
 <style lang="scss">

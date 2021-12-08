@@ -2,6 +2,7 @@
 import axios from "axios"
 import router from "../router";
 import "../main.css";
+
 export default {
     name: "Create",
      data() {
@@ -27,6 +28,7 @@ export default {
         send() {
             if ( !this.file || !localStorage.getItem('userName') || !this.newMessage || this.newMessage > 1500 ) {
                     this.isInvalid = true;
+                    console.log("ligne 69" + this.file)
             } else {
                 const formData = new FormData()
                 formData.append("image", this.file)
@@ -50,12 +52,13 @@ export default {
 </script>
 
 <template>
-<div class="container"> 
-    <div class="row card bg-light m-5 p-3">
+<main class="container"> 
+    <!-- Section pour le contenu creation message -->
+    <section class="row card bg-light m-5 p-3">
         <form enctype="multipart/form-data">
             <div class="header p-1">
                 <h1  class="btn btn-dark" style="cursor:default">
-                    {{ callName() }} vous allez créer une nouvelle publication <img src="../assets/send.svg" class="m-1" alt="Send" style="width:1rem"/>  
+                    {{ callName() }} vous allez créer une nouvelle publication    <img src="../assets/send.svg" class="m-1" alt="send" style="width:1rem"/>  
                 </h1>
             </div>
             <div class="row">
@@ -79,11 +82,11 @@ export default {
                 <router-link to="/Stream"> <div> <a class="btn btn-danger btn-block m-2 p-2">Annuler/Retour</a></div></router-link> 
             </div>
                 <div v-show="isInvalid" class="invalidBox m-2" key="invalid">
-                    <p>Vous ne pouvez pas envoyer de post sans contenu (vous devez inclure texte et image). Votre message doit faire moins de 1500 caractères.</p>        
+                <p>Vous ne pouvez pas envoyer de post sans contenu (vous devez inclure texte et image). Votre message doit faire moins de 1500 caractères.</p>        
             </div>  
         </form>
-    </div>
-</div>
+    </section>
+</main>
 </template>
 
 <style lang="scss">

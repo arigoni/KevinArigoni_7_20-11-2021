@@ -3,6 +3,7 @@ import axios from "axios";
 import router from "../router";
 import "../main.css";
 import Home from '../components/Home';
+
 export default {
     name: "UsersList",
     components: {
@@ -79,14 +80,16 @@ export default {
 </script>
 
 <template>
-<div class="container">    
+<main class="container">    
     <div class="col-12">
+        <!-- Titre -->
         <div class="col-12">
-            <router-link v-if="isAdmin" to='/Admin'><p class="my-2 btn btn-block btn-danger font-weight-bold">Administration du site</p></router-link>
+            <router-link v-if="isAdmin" to='/Admin'><h1 class="my-2 btn btn-block btn-danger font-weight-bold">Administration du site</h1></router-link>
             <Home></Home>
         </div>
-        <div id="filPrincipal" class="row">
-            <div class="col-12 col-md-4">
+        <section id="filPrincipal" class="row">
+            <!-- Article utilisateur -->
+            <article class="col-12 col-md-4">
                 <div class="card bg-light my-3 class=center-block" style="float:none;">
                     <div class="card-header">
                         <div class="row justify-content-around">
@@ -107,11 +110,12 @@ export default {
                         <button class="btn btn-dark rounded" style="cursor:default">Vous pouvez supprimer les utilisateurs que vous voulez.</button>
                     </div>
                 </div> 
-            </div>   
-            <div class="col col-md-8">
-                <h1 class="text-white text-center m-5 ">
+            </article> 
+            <!-- Bloc listes utilisateurs -->  
+            <sub class="col col-md-8">
+                <h2 class="text-white text-center m-5 ">
                     LISTE DE TOUS LES UTILISATEURS
-                </h1>
+                </h2>
                 <div class="badge btn-primary p-3 badgeList">
                     <span class="spanBadge">NOM</span>  
                     <span class="spanBadge">EMAIL</span>
@@ -126,10 +130,10 @@ export default {
                         <span class="spanBadge"> <button class="rounded" @click="deleteOneUser( i.id, isAdmin )"> <img src="../assets/trash.svg" alt="logo eye" style="width:25px"> </button> </span> 
                     </div>
                 </div>
-            </div>
-        </div>
+            </sub>
+        </section>
     </div>
-</div>
+</main>
 </template>
 
 <style lang="scss">
