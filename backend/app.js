@@ -11,14 +11,17 @@ const path = require("path");
 // Middleware d'authenfication
 const auth = require("./middleware/auth");
 
+// Création d'une application express
+const app = express();
+
+// appel des models dans la DB
+const dataBase = require("./models");
+
 // Déclaration des routes
 const authRoutes = require("./routes/auth")
 const userRoutes = require("./routes/user")
 const messageRoutes = require("./routes/message")
 const commentRoutes = require("./routes/comment")
-
-// Création d'une application express
-const app = express();
 
 // On utilise helmet pour plusieurs raisons notamment la mise en place du X-XSS-Protection afin d'activer le filtre de script intersites(XSS) dans les navigateurs web
 app.use(helmet());
@@ -29,8 +32,6 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// appel des models dans la DB
-const dataBase = require("./models");
 // Synchronisation de la base de données grâce à Sequelize
 dataBase.sequelize.sync();  
 

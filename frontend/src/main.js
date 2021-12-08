@@ -6,9 +6,8 @@ import App from './App.vue'
 import router from './router'
 import "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
-import store from './store'
 import "axios";
 
-createApp(App).use(store)
+createApp(App)
     .use(router)
     .mount('#app')

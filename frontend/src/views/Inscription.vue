@@ -1,48 +1,3 @@
-<script>
-import axios from "axios";
-import router from "../router";
-import "../main.css"
-
-export default {
-    name: "Inscription",
-    data() {
-        return {
-            inputUserName: "",
-            inputEmail: "",
-            inputPassword: "",
-            invalid: false
-        }
-    },
-    methods: {
-        sendForm() {
-            if ( !this.inputUserName || !this.inputEmail || !this.inputPassword ) {
-                return this.invalid = true;
-            }
-            const nameRegex = /(.*[a-z]){3,30}/;
-            const mailRegex = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
-            const pwdRegex  = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/  
-            if ( nameRegex.test(this.inputUserName) && mailRegex.test(this.inputEmail) && pwdRegex.test(this.inputPassword)) {
-                axios.post("http://localhost:3000/api/auth/signup", { 
-                    userName    : this.inputUserName, 
-                    email       : this.inputEmail,
-                    password    : this.inputPassword
-                })
-                .then(() => {
-                    alert('inscription réussie, redirection vers le module de connexion');
-                    router.push({ path : '/'});
-                })
-                .catch((error)=>{
-                    alert(error.status)
-                    console.log(error)});
-            } else {
-                console.log('validation form, method sendForm, renvoie une erreur')
-                this.invalid = true;
-            }
-        }
-    }
-}     
-</script>
-
 <template>
 <main class="container">
     <!-- Section contenant le module d'inscription -->
@@ -77,5 +32,49 @@ export default {
 </main>
 </template>
 
-<style lang="scss">
-</style>
+<script>
+import axios from "axios";
+import router from "../router";
+import "../main.css"
+
+export default {
+    name: "Inscription",
+    data() {
+        return {
+            inputUserName: "",
+            inputEmail: "",
+            inputPassword: "",
+            invalid: false
+        }
+    },
+    methods: {
+        sendForm() {
+            if ( !this.inputUserName || !this.inputEmail || !this.inputPassword ) {
+                return this.invalid = true;
+            }
+            const nameRegex = /(.*[a-z]){3,30}/;
+            const mailRegex = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
+            const pwdRegex  = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/  
+
+            if ( nameRegex.test(this.inputUserName) && mailRegex.test(this.inputEmail) && pwdRegex.test(this.inputPassword)) {
+
+                axios.post("http://localhost:3000/api/auth/signup", { 
+                    userName    : this.inputUserName, 
+                    email       : this.inputEmail,
+                    password    : this.inputPassword
+                })
+                .then(() => {
+                    alert('inscription réussie, redirection vers le module de connexion');
+                    router.push({ path : '/'});
+                })
+                .catch((error)=>{
+                    alert(error.status)
+                    console.log(error)});
+            } else {
+                console.log('validation form, method sendForm, renvoie une erreur')
+                this.invalid = true;
+            }
+        }
+    }
+}  
+</script>

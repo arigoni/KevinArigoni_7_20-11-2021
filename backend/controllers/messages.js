@@ -1,8 +1,8 @@
 // On récupère nos models
 const db = require("../models")
-const Message   = db.messages
-const User      = db.users
-const Comment   = db.comments
+const Message = db.messages
+const User = db.users
+const Comment = db.comments
 
 // Routes CRUD : Create, Read, Update, Delete.
 // Create ou Créer

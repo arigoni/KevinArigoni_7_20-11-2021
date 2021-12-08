@@ -1,3 +1,65 @@
+<template>
+<main class="container">    
+    <div class="col-12">
+        <div class="col-12 ">
+            <h1 v-if= 'this.messages.length !== 0' class="col-12 my-2 btn  btn-block btn-info font-weight-bold" style="background-color: #138400; cursor:default">Dernières Publications</h1>   
+            <h1  v-else class='col-12 my-2 btn  btn-block btn-danger font-weight-bold' style="cursor:default"> Aucune publication pour l'instant, soyez le premier à en créer une ! </h1>
+        </div>
+        <section id="filPrincipal" class="row">
+            <!-- Article utilisateur -->
+            <article class="col-12 col-md-4">
+                <div class="card bg-light my-3 class=center-block" style="float:none;">
+                    <div class="card-header">
+                        <div class="row justify-content-around">
+                            <p class="m-1"> Bonjour {{ name }} ! </p>
+                            <button @click="localClear"> <img src="../assets/signout.svg" alt="sign-out" style="width:35px"/> </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="text-center">
+                            <p id="membre">Membre depuis le {{ creation }}</p>
+                        </div>
+                        <div id="compteButton" class="text-center">
+                            <router-link v-if="isAdmin" to='/Admin'><button type="button" class=" btn btn-danger mx-auto rounded p-2 buttonsPanel">ADMIN. <button class=" rounded p-1 m-1 "><img src="../assets/trash.svg" alt="trash" style="width:25px"> ACTIVÉE</button></button></router-link> 
+                            <router-link v-else to='/Compte'><button type="button" class=" btn btn-secondary mx-auto rounded p-2 buttonsPanel">COMPTE</button></router-link> 
+                        </div>
+                    </div>
+                    <div id="publicationButton" class=" card-body text-center">
+                        <router-link to='/Create' ><button type="button" class="btn btn-dark mx-auto p-2 rounded buttonsPanel">PUBLIER</button></router-link>
+                    </div>
+                </div>                  
+            </article>
+            <!-- Bloc avec tous les messages -->
+            <sub class="col-12 col-md-8">
+                <div v-for="message in messages" :key="message.id" class="card bg-light my-3">
+                    <div class="card-header bg-light d-flex align-items-center justify-content-between m-0 p-1">
+                        <span class=" text-dark text-bold  p-1" >
+                            Posté par {{ message.userName.charAt(0).toUpperCase() + message.userName.slice(1) }}
+                            le {{ message.createdAt.slice(0,10).split('-').reverse().join('.') + ' à ' + message.createdAt.slice(11,16) }}
+                        </span>
+                        <div class="badge bg-dark text-wrap text-white p-2" style="width: 6rem;">
+                            ref # {{ message.id }}                    
+                        </div>                                                                                       
+                    </div>
+                    <div class="btn" @click="commentPage(message.id)">
+                        <img :src="message.messageUrl" v-if="message.messageUrl !== '' " class="border messImage" alt="image postée par un utilisateur" />
+                    </div>
+                    <div class="p-2"> 
+                        <p v-if="isAdmin || message.UserId == id" class="ml-2">   {{ message.message }} </p> 
+                    </div>
+                    <div class="row card-footer justify-content-around">
+                        <button @click="commentPage(message.id)" class="border-0"> <img src="../assets/comment_black.svg" alt="comment_black" style="width:25px"> </button>
+                        <div v-if="isAdmin || message.UserId == id">
+                            <button @click="deleteMessage(message.id, message.UserId, id)" class="border-0"> <img  src="../assets/trash.svg" alt="trash" style="width:25px"> </button>
+                        </div>
+                    </div>                             
+                </div>                        
+            </sub>
+        </section>
+    </div>
+</main>
+</template>
+
 <script>
 import axios from "axios";
 import router from "../router";
@@ -82,68 +144,3 @@ export default {
     }
 }
 </script>
-
-<template>
-<main class="container">    
-    <div class="col-12">
-        <div class="col-12 ">
-            <h1 v-if= 'this.messages.length !== 0' class="col-12 my-2 btn  btn-block btn-info font-weight-bold" style="background-color: #138400; cursor:default">Dernières Publications</h1>   
-            <h1  v-else class='col-12 my-2 btn  btn-block btn-danger font-weight-bold' style="cursor:default"> Aucune publication pour l'instant, soyez le premier à en créer une ! </h1>
-        </div>
-        <section id="filPrincipal" class="row">
-            <!-- Article utilisateur -->
-            <article class="col-12 col-md-4">
-                <div class="card bg-light my-3 class=center-block" style="float:none;">
-                    <div class="card-header">
-                        <div class="row justify-content-around">
-                            <p class="m-1"> Bonjour {{ name }} ! </p>
-                            <button @click="localClear"> <img src="../assets/signout.svg" alt="sign-out" style="width:35px"/> </button>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div class="text-center">
-                            <p id="membre">Membre depuis le {{ creation }}</p>
-                        </div>
-                        <div id="compteButton" class="text-center">
-                            <router-link v-if="isAdmin" to='/Admin'><button type="button" class=" btn btn-danger mx-auto rounded p-2 buttonsPanel">ADMIN. <button class=" rounded p-1 m-1 "><img src="../assets/trash.svg" alt="trash" style="width:25px"> ACTIVÉE</button></button></router-link> 
-                            <router-link v-else to='/Compte'><button type="button" class=" btn btn-secondary mx-auto rounded p-2 buttonsPanel">COMPTE</button></router-link> 
-                        </div>
-                    </div>
-                    <div id="publicationButton" class=" card-body text-center">
-                        <router-link to='/Create' ><button type="button" class="btn btn-dark mx-auto p-2 rounded buttonsPanel">PUBLIER</button></router-link>
-                    </div>
-                </div>                  
-            </article>
-            <!-- Bloc avec tous les messages -->
-            <sub class="col-12 col-md-8">
-                <div v-for="message in messages" :key="message.id" class="card bg-light my-3">
-                    <div class="card-header bg-light d-flex align-items-center justify-content-between m-0 p-1">
-                        <span class=" text-dark text-bold  p-1" >
-                            Posté par {{ message.userName.charAt(0).toUpperCase() + message.userName.slice(1) }}
-                            le {{ message.createdAt.slice(0,10).split('-').reverse().join('.') + ' à ' + message.createdAt.slice(11,16) }}
-                        </span>
-                        <div class="badge bg-dark text-wrap text-white p-2" style="width: 6rem;">
-                            ref # {{ message.id }}                    
-                        </div>                                                                                       
-                    </div>
-                    <div class="btn" @click="commentPage(message.id)">
-                        <img :src="message.messageUrl" v-if="message.messageUrl !== '' " class="border messImage" alt="image postée par un utilisateur" />
-                    </div>
-                    <div class="p-2"> 
-                        <p v-if="isAdmin || message.UserId == id" class="ml-2">   {{ message.message }} </p> 
-                    </div>
-                    <div class="row card-footer justify-content-around">
-                        <button @click="commentPage(message.id)" class="border-0"> <img src="../assets/comment_black.svg" alt="comment_black" style="width:25px"> </button>
-                        <div v-if="isAdmin || message.UserId == id">
-                            <button @click="deleteMessage(message.id, message.UserId, id)" class="border-0"> <img  src="../assets/trash.svg" alt="trash" style="width:25px"> </button>
-                        </div>
-                    </div>                             
-                </div>                        
-            </sub>
-        </section>
-    </div>
-</main>
-</template>
-
-<style lang="scss">
-</style>

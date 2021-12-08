@@ -1,7 +1,7 @@
 // On récupère nos models
-const db        = require("../models"); 
-const Comment   = db.comments;              
-const User      = db.users;
+const db = require("../models"); 
+const Comment = db.comments;              
+const User = db.users;
 
 // Routes CRUD : Create, Read, Update, Delete.
 // Create ou Créer
