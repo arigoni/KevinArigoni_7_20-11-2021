@@ -1,16 +1,20 @@
-<!-- Composant de la partie header avec le logo et le contact -->
+<!-- Composant représentant la bannière avec le logo et le contact -->
 <script>
-    export default {
-	    name: 'HomeLink'
-    }
+export default {
+	name: 'NavLink'
+}
 </script>
 
 <template>
-	<a href="/">Accueil</a> 
+<div class="container">
+    <div class="row">
+        <div class="col navbar">
+            <img src="../assets/logo.png" alt="Logo de la société" style="width:250px"/>
+            <a class="mailto" href="mailto:contact@groupomania.com"><img src="../assets/mail.svg" alt="Contact"></a>
+        </div>
+    </div>
+</div>
 </template>
 
 <style lang="scss">
-	a {
-		text-decoration: none;
-	}
 </style>
