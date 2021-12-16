@@ -1,7 +1,7 @@
 <!-- Partie message -->
 <template>
 <main class="container">  
-    <!-- Titre -->
+    <!-- titre -->
     <div class="row mb-4 rounded">
         <p class="col-12 my-2 btn  btn-block btn-info badgeTopColor font-weight-bold" style="background-color: #138400" >Vous consultez les commentaires</p>  
         <Home></Home>
@@ -33,7 +33,7 @@
                 </div>
             </div>
         </article>
-        <!--Section message -->
+        <!-- Section message -->
         <section class="card col-12 col-md-8 bg-light mb-3">
             <div class="card-header bg-light d-flex align-items-center justify-content-between m-0 p-1">
                 <span class=" text-dark text-bold  p-1" > 
@@ -59,7 +59,7 @@
             </div>
         </section> 
     </div>
-    <!-- Section commentaire -->
+    <!-- Section commentaire(s) -->
     <section class="row">
         <router-link to='/CreateComment'><p  v-if="comments.length == 0" class='mt-3 btn btn-sm btn-block btn-danger font-weight-bold'> Aucun commentaire pour l'instant, soyez le premier à en créer un !</p></router-link>
         <div v-for="comment in comments" :key="comment" class="card col-12 mt-3">
@@ -107,17 +107,17 @@ export default {
         }
     },
     created: function() {        
-        let MessageId   = localStorage.getItem('MessageId')
-        let self        = this;
+        let MessageId = localStorage.getItem('MessageId')
+        let self = this;
         axios.get("http://localhost:3000/api/messages/" + MessageId,  { headers: {"Authorization": "Bearer " + localStorage.getItem("token")} })
         .then((res) => {
             console.log(res)
-            self.creation           = res.data.createdAt.slice(0,10).split("-").reverse().join(".");
-            self.messageUserName    = res.data.userName;
-            self.messageUserId      = res.data.userId;
-            self.message            = res.data.message;
-            self.messageId          = res.data.id; 
-            self.messageUrl         = res.data.messageUrl;
+            self.creation = res.data.createdAt.slice(0,10).split("-").reverse().join(".");
+            self.messageUserName = res.data.userName;
+            self.messageUserId = res.data.userId;
+            self.message = res.data.message;
+            self.messageId = res.data.id; 
+            self.messageUrl = res.data.messageUrl;
         })
         .catch((error)=>{
             alert(error)
@@ -125,10 +125,10 @@ export default {
         let id = localStorage.getItem('userId');
         axios.get("http://localhost:3000/api/users/" + id, { headers: {"Authorization": "Bearer " + localStorage.getItem("token")} })
         .then(res => {  
-            self.isAdmin                = res.data.isAdmin;
-            self.nameCurrentUser        = res.data.userName.charAt(0).toUpperCase() + res.data.userName.slice(1);
-            self.creationUser           = res.data.createdAt.slice(0,10).split("-").reverse().join(".");
-            self.currentUserId          = res.data.id
+            self.isAdmin = res.data.isAdmin;
+            self.nameCurrentUser = res.data.userName.charAt(0).toUpperCase() + res.data.userName.slice(1);
+            self.creationUser = res.data.createdAt.slice(0,10).split("-").reverse().join(".");
+            self.currentUserId = res.data.id
         })
         .catch((error)=> { console.log(error) 
         })  
@@ -141,6 +141,7 @@ export default {
         });
     },
     methods: {
+
         localClear() {
             localStorage.clear();
             router.push({ path : "/" });
@@ -166,8 +167,10 @@ export default {
             } else {
                 return
             }
+
         },
         deleteComment(commId, commUid, currentUid) {
+
             let confirmCommentDeletion = confirm("voulez-vous vraiment suppimer votre commentaire ?");
             if (confirmCommentDeletion == true) {
                 axios.delete("http://localhost:3000/api/comments/", {
@@ -175,9 +178,9 @@ export default {
                         "Authorization": "Bearer " + localStorage.getItem("token") 
                     },
                     params: {
-                        commentId:     commId,
-                        commentUid:    commUid,
-                        currentUid:    currentUid
+                        commentId: commId,
+                        commentUid: commUid,
+                        currentUid: currentUid
                     }
                 })
                 .then((res)=> {
@@ -194,4 +197,4 @@ export default {
         }
     }
 }
-</script> 
+</script>

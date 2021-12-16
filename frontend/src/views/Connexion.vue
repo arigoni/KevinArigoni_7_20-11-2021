@@ -43,18 +43,20 @@ export default {
     },
     methods: {
         handleSubmit() {
+
             if ( !this.inputEmail || !this.inputPassword ) {
                     return this.isInvalid = true;
                 }
+
             axios.post("http://localhost:3000/api/auth/login", { 
-                email :     this.inputEmail,
-                password:   this.inputPassword
+                email : this.inputEmail,
+                password: this.inputPassword
              })
             .then(function (res) {
-                localStorage.setItem("token",   res.data.token)
-                localStorage.setItem("userId",  res.data.userId)
-                localStorage.setItem("userName",res.data.userName)
-                localStorage.setItem("role",    res.data.role)
+                localStorage.setItem("token", res.data.token)
+                localStorage.setItem("userId", res.data.userId)
+                localStorage.setItem("userName", res.data.userName)
+                localStorage.setItem("role", res.data.role)
                 window.alert('connexion réussie, redirection vers la page principale');
                 router.push({ path : 'Stream'});
             })
@@ -64,5 +66,5 @@ export default {
             })         
         }
     }
-}     
+}    
 </script>

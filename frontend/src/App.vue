@@ -17,7 +17,7 @@ export default {
   </div>
 </template>
 
-<style lang="scss">
+<style>
 body {
   background: linear-gradient(90deg, rgba(61,71,190,1) 0%, rgba(10,81,166,1) 100%);
 }

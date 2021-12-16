@@ -33,7 +33,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Synchronisation de la base de données grâce à Sequelize
-dataBase.sequelize.sync();  
+dataBase.sequelize.sync(); 
 
 // Middleware qui va transmettre les requêtes vers ces url vers les routes correspondantes
 app.use("/images", express.static(path.join(__dirname, "images")));

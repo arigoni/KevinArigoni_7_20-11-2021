@@ -75,16 +75,18 @@ export default {
         }
     },
     created: function() {        
-        let id          = localStorage.getItem('userId');
-        let self        = this;  
+        let id = localStorage.getItem('userId');
+        let self = this;  
+
         axios.get("http://localhost:3000/api/users/" + id , { headers: {"Authorization": "Bearer " + localStorage.getItem("token")} })
         .then(res => {  
-            self.creation           = res.data.createdAt.slice(0,10).split("-").reverse().join(".");
-            self.isAdmin            = res.data.isAdmin;
-            self.nameCurrentUser    = res.data.userName.charAt(0).toUpperCase() + res.data.userName.slice(1);       
+            self.creation = res.data.createdAt.slice(0,10).split("-").reverse().join(".");
+            self.isAdmin = res.data.isAdmin;
+            self.nameCurrentUser = res.data.userName.charAt(0).toUpperCase() + res.data.userName.slice(1);       
         })
         .catch((error)=> { console.log(error) 
         });
+
         axios.get("http://localhost:3000/api/users/all" , { headers: {"Authorization": "Bearer " + localStorage.getItem("token")} })
         .then((res) => {  
             this.users = res.data.found;
@@ -106,8 +108,8 @@ export default {
                         "Authorization": "Bearer " + localStorage.getItem("token") 
                     },
                     params: {
-                        uid:          uid,
-                        isAdmin:      isAdmin,
+                        uid: uid,
+                        isAdmin: isAdmin,
                     }
                 })
                 .then((res)=> {

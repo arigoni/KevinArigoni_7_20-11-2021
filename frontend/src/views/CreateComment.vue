@@ -51,12 +51,15 @@ export default {
             return localStorage.getItem('MessageId')
         },
         send() {
+
             if (!this.newComment || !localStorage.getItem("userId") || !localStorage.getItem("MessageId" || this.newComment.lemgth > 1500)) {
                 this.isInvalid = true;
             } else {
-                let UserId      = localStorage.getItem("userId");
-                let comment     = this.newComment.toString();
-                let MessageId   = localStorage.getItem("MessageId");
+
+                let UserId = localStorage.getItem("userId");
+                let comment = this.newComment.toString();
+                let MessageId = localStorage.getItem("MessageId");
+
                 axios.post("http://localhost:3000/api/comments/", { UserId, comment, MessageId } , { headers: { "Authorization":"Bearer " + localStorage.getItem("token")}})
                 .then(()=> {
                     this.UserId = ""

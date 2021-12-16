@@ -1,5 +1,5 @@
 // On récupère nos models
-const db = require("../models"); 
+const db = require("../models");  
 const Comment = db.comments;              
 const User = db.users;
 

@@ -61,6 +61,7 @@
 </template>
 
 <script>
+
 import axios from "axios";
 import router from "../router";
 import "../main.css";
@@ -97,10 +98,10 @@ export default {
         axios.get("http://localhost:3000/api/users/" + id, { headers: {"Authorization": "Bearer " + localStorage.getItem("token")} })
         .then(res => {  
             console.log(res)
-            self.id                 = res.data.id;
-            self.name               = res.data.userName.charAt(0).toUpperCase() + res.data.userName.slice(1);
-            self.creation           = res.data.createdAt.slice(0,10).split("-").reverse().join(".");
-            self.isAdmin            = res.data.isAdmin;
+            self.id = res.data.id;
+            self.name = res.data.userName.charAt(0).toUpperCase() + res.data.userName.slice(1);
+            self.creation = res.data.createdAt.slice(0,10).split("-").reverse().join(".");
+            self.isAdmin = res.data.isAdmin;
         })
         .catch((error)=> { console.log(error) 
         });    

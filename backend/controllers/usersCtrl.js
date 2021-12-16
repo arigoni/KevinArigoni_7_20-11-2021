@@ -1,8 +1,8 @@
 // On récupère nos models
 const db = require("../models")
-const User      = db.users
-const Message   = db.messages
-const Comment   = db.comments
+const User = db.users
+const Message = db.messages
+const Comment = db.comments
 const { Op } = require("sequelize");
 
 // Routes CRUD : Create, Read, Update, Delete.

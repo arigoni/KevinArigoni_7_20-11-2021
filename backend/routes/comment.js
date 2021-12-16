@@ -2,7 +2,7 @@ const express = require("express");
 // On crée un router avec la méthode mise à disposition par Express
 const router = express.Router();
 // On associe les fonctions aux différentes routes, on importe le controller
-const commentCtrl = require("../controllers/comments");
+const commentCtrl = require("../controllers/commentsCtrl");
 // On importe le middleware auth pour sécuriser les routes
 const auth = require('../middleware/auth'); 
 

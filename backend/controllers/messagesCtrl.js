@@ -80,9 +80,9 @@ exports.findAllMessagesForOne = (req, res, next) => {
     Message.findAll({ 
         where: { UserId: req.params.id },
     })
-    .then((result) => { 
-        list = result;
-        res.status(200).json({ list }) 
+    .then((res) => { 
+        list = res;
+        res.status(200).json( { list } )
     })
     .catch((error) => { res.status(404).json({ error })})
 };
