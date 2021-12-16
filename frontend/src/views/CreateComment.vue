@@ -65,7 +65,6 @@ export default {
                     this.UserId = ""
                     this.newMessage = ""
             
-                    alert('Commentaire Posté!')
                     router.push({path : 'Comment'})
                     
                 })

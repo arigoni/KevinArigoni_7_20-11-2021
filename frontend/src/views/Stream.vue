@@ -48,11 +48,11 @@
                         <p v-if="isAdmin || message.UserId == id" class="ml-2">   {{ message.message }} </p> 
                     </div>
                     <div class="row card-footer justify-content-around">
-                        <button @click="commentPage(message.id)" class="border-0"> <img src="../assets/comment_black.svg" alt="comment_black" style="width:25px"> </button>
+                        <button @click="commentPage(message.id)" class="border-0"> <img src="../assets/comment_black.svg" alt="comment_black" style="width:25px"> </button>   
                         <div v-if="isAdmin || message.UserId == id">
                             <button @click="deleteMessage(message.id, message.UserId, id)" class="border-0"> <img  src="../assets/trash.svg" alt="trash" style="width:25px"> </button>
                         </div>
-                    </div>                             
+                    </div>                          
                 </div>                        
             </sub>
         </section>

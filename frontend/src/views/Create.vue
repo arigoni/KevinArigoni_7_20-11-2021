@@ -15,7 +15,7 @@
                 </div>
                 <div class="col-12 justify-content-center text-center">
                     <img :src="newImage" class="w-50 rounded">
-                    <p class="text-center"> un aperçu de votre post apparaîtra ici. Formats acceptés: jpg, jpeg, png et gif.</p>
+                    <p class="text-center">Formats acceptés: jpg, jpeg, png et gif.</p>
                 </div>
                 <div class="col-12 justify-content-center">
                     <div class="form-group justify-content-center">
@@ -78,7 +78,6 @@ export default {
                     this.UserId = ""
                     this.newMessage = ""
                     this.file = null
-                    alert('publication réussie!')
                     router.push({path : 'Stream'})
                 })
                 .catch((error)=>{

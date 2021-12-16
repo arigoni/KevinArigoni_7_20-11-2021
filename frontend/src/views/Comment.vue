@@ -28,9 +28,6 @@
                 <div class="justify-content-center align-self-center">
                     <router-link to='/Create' ><button type="button" class="btn btn-dark  rounded m-2 p-2 font-weight-bold ">CREER UNE PUBLICATION<img src="../assets/send.svg" alt="logo-envoyer"  style="width: 25px" class="m-3" />  </button></router-link>
                 </div>
-                <div class="justify-content-center align-self-center">
-                    <router-link to='/CreateComment'><button type="button" class="btn btn-dark  m-2 p-2 rounded font-weight-bold" >COMMENTER<img src="../assets/write.svg" alt="write-logo"  style="width: 25px" class="m-3" ></button></router-link>
-                </div>
             </div>
         </article>
         <!-- Section message -->
@@ -57,26 +54,23 @@
                     <button @click="deleteMessage(messageId, messageUserId, currentUserId)" class="border-0"> <img  src="../assets/trash.svg" alt="trash" style="width:25px"> </button>
                 </div>
             </div>
-        </section> 
-    </div>
-    <!-- Section commentaire(s) -->
-    <section class="row">
-        <router-link to='/CreateComment'><p  v-if="comments.length == 0" class='mt-3 btn btn-sm btn-block btn-danger font-weight-bold'> Aucun commentaire pour l'instant, soyez le premier à en créer un !</p></router-link>
-        <div v-for="comment in comments" :key="comment" class="card col-12 mt-3">
-            <div class="card-header ">
+            <div class="justify-content-center align-self-center">
+                <router-link to='/CreateComment'><button type="button" class="btn btn-dark  m-2 p-2 rounded font-weight-bold" >COMMENTER<img src="../assets/write.svg" alt="write-logo"  style="width: 25px" class="m-3" ></button></router-link>
+            </div>
+            <!-- Partie commentaire(s) -->
+            <router-link to='/CreateComment'><p  v-if="comments.length == 0" class='mt-3 btn btn-sm btn-block btn-danger font-weight-bold'> Aucun commentaire pour l'instant, soyez le premier à en créer un !</p></router-link>
+            <div v-for="comment in comments" :key="comment">
                 <p class="btn btn-dark w-100" style="cursor:default">Commentaire rédigé le {{ comment.createdAt.slice(0,10).split('-').reverse().join('/') }}  par {{ comment.User.userName.charAt(0).toUpperCase() + comment.User.userName.slice(1) }}</p>
-            </div>
-            <div class="card-body border bg-dark text-white text-right rounded mx-2">
                 <p>  {{ comment.comment }} </p>
-            </div>
-            <div class="card-footer row justify-content-between">
-                <p class="btn btn-dark w-10 text-right mx-2 " style="cursor:default">ref# <span class="badge badge-light"> {{ comment.id }}</span></p>
-                <div v-if="isAdmin || comment.UserId == currentUserId">
-                    <button @click="deleteComment(comment.id, comment.UserId, currentUserId)" class="border-0"> <img  src="../assets/trash.svg" alt="trash" style="width:25px"> </button>
+                <div class="row justify-content-around">
+                    <p class="btn btn-dark w-10 text-right mx-2 " style="cursor:default">ref# <span class="badge badge-light"> {{ comment.id }}</span></p>
+                    <div v-if="isAdmin || comment.UserId == currentUserId">
+                        <button @click="deleteComment(comment.id, comment.UserId, currentUserId)" class="border-0"><img src="../assets/trash.svg" alt="trash" style="width:20px"></button>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section> 
+    </div>
 </main>
 </template>
 
@@ -162,7 +156,6 @@ export default {
                 .then((res)=> console.log(res))
                 .catch((error) => { 
                     console.log("ligne 133 " + error)})
-                    alert("Au click sur ok, le message (et ses commentaires) supprimé, retour à l'accueil.")
                     router.push({ path : "/Stream" });
             } else {
                 return
@@ -185,7 +178,6 @@ export default {
                 })
                 .then((res)=> {
                     console.log(res);
-                    alert('Cliquez sur ok et le commentaire sera supprimé');
                     location.reload();
                 })
                 .catch((error) => { 
