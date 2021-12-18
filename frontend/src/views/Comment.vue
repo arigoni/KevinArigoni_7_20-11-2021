@@ -63,7 +63,6 @@
                 <p class="btn btn-dark w-100" style="cursor:default">Commentaire rédigé le {{ comment.createdAt.slice(0,10).split('-').reverse().join('/') }}  par {{ comment.User.userName.charAt(0).toUpperCase() + comment.User.userName.slice(1) }}</p>
                 <p>  {{ comment.comment }} </p>
                 <div class="row justify-content-around">
-                    <p class="btn btn-dark w-10 text-right mx-2 " style="cursor:default">ref# <span class="badge badge-light"> {{ comment.id }}</span></p>
                     <div v-if="isAdmin || comment.UserId == currentUserId">
                         <button @click="deleteComment(comment.id, comment.UserId, currentUserId)" class="border-0"><img src="../assets/trash.svg" alt="trash" style="width:20px"></button>
                     </div>

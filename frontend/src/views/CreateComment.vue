@@ -65,7 +65,7 @@ export default {
                     this.UserId = ""
                     this.newMessage = ""
             
-                    router.push({path : 'Comment'})
+                    router.push({path : 'Stream'})
                     
                 })
                 .catch((error)=>{

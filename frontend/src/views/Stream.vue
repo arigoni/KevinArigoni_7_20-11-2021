@@ -48,11 +48,11 @@
                         <p v-if="isAdmin || message.UserId == id" class="ml-2">   {{ message.message }} </p> 
                     </div>
                     <div class="row card-footer justify-content-around">
-                        <button @click="commentPage(message.id)" class="border-0"> <img src="../assets/comment_black.svg" alt="comment_black" style="width:25px"> </button>   
+                        <button @click="commentPage(message.id)" class="border-0">Voir les commentaires</button>   
                         <div v-if="isAdmin || message.UserId == id">
                             <button @click="deleteMessage(message.id, message.UserId, id)" class="border-0"> <img  src="../assets/trash.svg" alt="trash" style="width:25px"> </button>
                         </div>
-                    </div>                          
+                    </div>    
                 </div>                        
             </sub>
         </section>
@@ -74,7 +74,8 @@ export default {
             messages: [],
             id: "",                 
             name: "",               
-            creation: ""           
+            creation: "",
+            comments: [],    
         }
     },
     created: function() {        
@@ -104,7 +105,7 @@ export default {
             self.isAdmin = res.data.isAdmin;
         })
         .catch((error)=> { console.log(error) 
-        });    
+        });  
     },
     methods: {
         commentPage(m) {
@@ -136,6 +137,31 @@ export default {
                     console.log("ligne 133 " + error)})
             } else {
                 return
+            }
+        },
+        deleteComment(commId, commUid, currentUid) {
+
+            let confirmCommentDeletion = confirm("voulez-vous vraiment suppimer votre commentaire ?");
+            if (confirmCommentDeletion == true) {
+                axios.delete("http://localhost:3000/api/comments/", {
+                headers: { 
+                        "Authorization": "Bearer " + localStorage.getItem("token") 
+                    },
+                    params: {
+                        commentId: commId,
+                        commentUid: commUid,
+                        currentUid: currentUid
+                    }
+                })
+                .then((res)=> {
+                    console.log(res);
+                    location.reload();
+                })
+                .catch((error) => { 
+                    console.log(error)
+                })
+            } else {
+                return 
             }
         },
         localClear() {
